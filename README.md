@@ -40,7 +40,7 @@ EXPOSE 80
 ```
 
 container port 80 mapped with pc port 8080 
-docker run -d -p 8080:80 my-nginx 
+```docker run -d -p 8080:80 my-nginx ```
 
 http://localhost:8080
 <img width="615" height="254" alt="Screenshot 2026-04-01 at 2 42 40 PM" src="https://github.com/user-attachments/assets/72e7f81d-d504-4db1-8fa2-2367cda25552" />
@@ -49,7 +49,7 @@ http://localhost:8080
 ## 02 bind mount
 host folder connected to container internal folder
 
-docker run -d -p 8080:80 -v ~/Desktop/web-server-example:/usr/share/nginx/html --name bind-test nginx:latest
+``` docker run -d -p 8080:80 -v ~/Desktop/web-server-example:/usr/share/nginx/html --name bind-test nginx:latest ```
 
 after edit by vi index.html in terminal
 enter by http://localhost:8080 to see difference
