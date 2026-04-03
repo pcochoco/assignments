@@ -67,7 +67,7 @@ docker volume create web-content
 
 create container with volume 
 ```
-docker run -d -p 8080:80 -v web-content:/usr/share/nginx/html web-server-example
+docker run -d -p 8080:80 -v web-content:/usr/share/nginx/html my-nginx
 ```
 
 use bash in container 
@@ -86,7 +86,7 @@ echo "<h1>Docker Volume Test Evidence</h1>" > /usr/share/nginx/html/index.html
 docker run -d -p 8080:80 \  
   --name web-new-container \
   -v web-content:/usr/share/nginx/html \
-  web-server-example
+  my-nginx
 ```
 
 difference added to index.html that was made on the first container 
