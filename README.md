@@ -113,3 +113,14 @@ ex) chmod u+r Dockerfile : owner reading permission granted
 [example for dir]<br>
 <img width="587" height="124" alt="Screenshot 2026-04-01 at 3 33 37 PM" src="https://github.com/user-attachments/assets/60f7e5c6-7f6b-4bf2-b567-2569c986da7e" />
 
+## troubleshooting
+### 01 volume 경로 이해 
+``` docker run -d -p 8080:80 -v web-content:/usr/share/nginx/html my-nginx ```
+- web-content라는 Docker volume을 nginx 컨테이너 내부 경로 /usr/share/nginx/html에 마운트한 경우
+- 따라서 nginx는 해당 경로에서 컨테이너 자체 파일이 아니라 Docker가 관리하는 volume의 파일을 읽게 됨
+
+### 02 bind mount 경로 이해
+``` docker run -d -p 8080:80 -v D:\projects\assignments\web-server-example:/usr/share/nginx/html --name bind-test my-nginx ```
+- 호스트 경로 D:\projects\assignments\web-server-example를 nginx 컨테이너 내부 경로 /usr/share/nginx/html에 바인드 마운트한 경우
+- 따라서 nginx는 해당 경로에서 컨테이너 내부 파일이 아니라 호스트 폴더의 파일을 읽게 됨
+ 
