@@ -5,6 +5,9 @@
 - Docker version - 28.5.2
 - Git version - 2.53.0
 
+*shell : os 에 사용자 명령 전달 (사용자가 os 기능을 명령으로 다룰 수 있게 해주는 인터페이스)
+*terminal : shell을 볼 수 있는 화면 (terminal을 활용해 어떤 shell에 명령을 전달)
+
 ## 00 docker installation
 - docker version
 - github version 
