@@ -104,9 +104,11 @@ managed with binary numbers
 each position with order of rwx (read, write, execute)
 
 ex) chmod u+r Dockerfile : owner reading permission granted
+<br>
 [example for file]
 <img width="992" height="287" alt="Screenshot 2026-04-01 at 3 35 40 PM" src="https://github.com/user-attachments/assets/5472dcbd-f766-48ee-9049-bd20d6a88614" />
 
+<br>
 [example for dir]
 <img width="587" height="124" alt="Screenshot 2026-04-01 at 3 33 37 PM" src="https://github.com/user-attachments/assets/60f7e5c6-7f6b-4bf2-b567-2569c986da7e" />
 
