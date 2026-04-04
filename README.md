@@ -58,9 +58,11 @@ after edit by ``` vi index.html ``` in terminal
 enter by http://localhost:8080 to see difference
 
 *for mac D drive does not exist
-``` docker run -d -p 8080:80 \
+```
+docker run -d -p 8080:80 \
 -v /Users/yienie123412324/Desktop/assignments/web-server-example:/usr/share/nginx/html \
---name bind-test my-nginx ```
+--name bind-test my-nginx
+```
 
 
 <img width="1177" height="272" alt="Screenshot 2026-04-01 at 2 25 28 PM" src="https://github.com/user-attachments/assets/ca18f3c5-2415-4f27-a470-f2093c4ce8cc" />
@@ -92,10 +94,7 @@ echo "<h1>Docker Volume Test Evidence</h1>" > /usr/share/nginx/html/index.html
 - delete first container 
 - create a new container 
 ```
-docker run -d -p 8080:80 \  
-  --name web-new-container \
-  -v web-content:/usr/share/nginx/html \
-  my-nginx
+docker run -d -p 8080:80 --name web-new-container -v web-content:/usr/share/nginx/html my-nginx
 ```
 
 difference added to index.html that was made on the first container 
