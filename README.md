@@ -82,6 +82,9 @@ docker run -d -p 8080:80 -v web-content:/usr/share/nginx/html my-nginx
 ```
 
 use bash in container 
+*exec : runs command inside container
+*-i : interactive stdin
+*-t : terminal interface 
 ```
 docker exec -it 79b2ac78dd2a bash
 ```
