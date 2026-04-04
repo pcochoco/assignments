@@ -57,6 +57,12 @@ host folder connected to container internal folder
 after edit by ``` vi index.html ``` in terminal
 enter by http://localhost:8080 to see difference
 
+*for mac D drive does not exist
+``` docker run -d -p 8080:80 \
+-v /Users/yienie123412324/Desktop/assignments/web-server-example:/usr/share/nginx/html \
+--name bind-test my-nginx ```
+
+
 <img width="1177" height="272" alt="Screenshot 2026-04-01 at 2 25 28 PM" src="https://github.com/user-attachments/assets/ca18f3c5-2415-4f27-a470-f2093c4ce8cc" />
 
 
