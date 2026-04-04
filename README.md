@@ -106,6 +106,9 @@ difference added to index.html that was made on the first container
 
 *both bind mount & docker volume persist data 
 
+*can use docker commit for change of container to image
+not preferred because change is not clarified
+
 ## 04 permission 
 - owner : user that created the file 
 - group : collection of users
