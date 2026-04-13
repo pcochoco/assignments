@@ -1,4 +1,16 @@
 from __future__ import annotations
+#Quiz, list[Quiz] 같은 타입 표기를 더 안전하고 편하게 쓰려고 넣은 것
+#타입 힌트를 나중에 평가하게 하는 설정
+#파이썬이 함수 선언에 적힌 타입들을 즉시 실제 객체로 해석하지 않고 문자열처럼 미뤄서 처리
+#함수 본문 ex) return Quiz(...)와 달리 함수 정의를 읽는 시점에 처리될 수 있는 정보
+#class 이름 Quiz를 아직 참조할 수 없는 시점에 해석하게 되면 문제가 되는 것
+#type hint : 변수, 값이 어떤 자료형인지 사람이랑 도구에게 알려주는 표시(매개인자 옆의 자료형 표시)
+#ex) data: dict 의 경우 실제 변수 data 가 dict 자료형인게 아니라 dict로 쓰기 위해 만드는 변수임을 의미 
+
+#class Quiz:
+    # @classmethod
+    # def from_dict(cls, data: dict) -> Quiz:
+    #     ...
 
 
 class Quiz:
