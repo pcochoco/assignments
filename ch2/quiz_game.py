@@ -11,12 +11,12 @@ class QuizGame:
         self.state_file = Path("state.json")
         self.quizzes: list[Quiz] = []
         self.best_score: int | None = None
-        self.loaded_from_file: bool = False
+        self.loaded_from_file: bool = False #
 
-        self.load_state()
+        self.load_state() #함수 호출 
 
-    def get_default_quizzes(self) -> list[Quiz]:
-        return [
+    def get_default_quizzes(self) -> list[Quiz]: #Quiz type list
+        return [ #Quiz의 기본생성자 활용
             Quiz(
                 question="Python의 창시자는 누구인가요?",
                 choices=["Guido van Rossum", "Linus Torvalds", "James Gosling", "Bjarne Stroustrup"],
@@ -48,6 +48,7 @@ class QuizGame:
         try:
             while True:
                 self.show_menu()
+                #choice min 1 max 5
                 choice = self.read_int("선택: ", 1, 5)
 
                 if choice == 1:
@@ -64,8 +65,8 @@ class QuizGame:
 
         except KeyboardInterrupt:
             print("\nCtrl+C가 입력되었습니다.")
-            self.safe_exit()
-        except EOFError:
+            self.safe_exit() 
+        except EOFError: #ctrl z(입력 더 이상 x)
             print("\n입력 스트림이 종료되었습니다.")
             self.safe_exit()
 
@@ -93,7 +94,7 @@ class QuizGame:
             try:
                 value = input(prompt).strip()
             except KeyboardInterrupt:
-                raise
+                raise #exception 던짐
             except EOFError:
                 raise
 
@@ -116,9 +117,9 @@ class QuizGame:
                 print(f"빈 입력은 허용되지 않습니다. {min_value}-{max_value} 사이의 숫자를 입력하세요.")
                 continue
 
-            try:
+            try: #"123" into 123 (str -> int)
                 value = int(raw)
-            except ValueError:
+            except ValueError: #예외에 대한 직접 처리 
                 print(f"잘못된 입력입니다. {min_value}-{max_value} 사이의 숫자를 입력하세요.")
                 continue
 
@@ -137,6 +138,7 @@ class QuizGame:
 
         correct_count = 0
 
+        #quizzes quiz 원소에 대해 idx 1부터 번호 붙여줌
         for idx, quiz in enumerate(self.quizzes, start=1):
             quiz.display(number=idx)
             user_answer = self.read_int("정답 입력 (1-4): ", 1, 4)
@@ -147,7 +149,7 @@ class QuizGame:
             else:
                 print(f" 오답입니다! 정답은 {quiz.answer}번입니다.\n")
 
-        score = int((correct_count / len(self.quizzes)) * 100)
+        score = int((correct_count / len(self.quizzes)) * 100) #%
 
         print("=" * 40)
         print(f"결과: {len(self.quizzes)}문제 중 {correct_count}문제 정답! ({score}점)")
@@ -155,7 +157,7 @@ class QuizGame:
         if self.best_score is None or correct_count > self.best_score:
             self.best_score = correct_count
             print("새로운 최고 점수입니다!")
-            self.save_state()
+            self.save_state() #점수 저장용
         else:
             print("수고하셨습니다!")
 
@@ -206,7 +208,7 @@ class QuizGame:
 
         print(f"최고 점수: {score_percent}점 ({total_quiz_count}문제 중 {self.best_score}문제 정답)")
 
-    def load_state(self) -> None:
+    def load_state(self) -> None: #
         if not self.state_file.exists():
             print("state.json 파일이 없어 기본 퀴즈 데이터를 사용합니다.")
             self.quizzes = self.get_default_quizzes()
@@ -217,14 +219,18 @@ class QuizGame:
 
         try:
             with self.state_file.open("r", encoding="utf-8") as file:
-                data = json.load(file)
+                data = json.load(file) # json -> python
 
+            #json data 값 없을 경우 default
             quizzes_data = data.get("quizzes", [])
-            best_score = data.get("best_score", None)
+            best_score = data.get("best_score", None) 
 
             if not isinstance(quizzes_data, list):
                 raise ValueError("quizzes 데이터가 리스트가 아닙니다.")
 
+
+            #json object : dictionary -> quizzes 의 quiz 대상
+            #json array : list
             quizzes = [Quiz.from_dict(item) for item in quizzes_data]
 
             if best_score is not None:
@@ -235,6 +241,7 @@ class QuizGame:
             self.best_score = best_score
             self.loaded_from_file = True
 
+        #json 형식 잘못된 경우 / 입력 값 error / os error
         except (json.JSONDecodeError, ValueError, OSError) as error:
             print(f" 데이터 파일을 읽는 중 문제가 발생했습니다: {error}")
             print("기본 퀴즈 데이터로 복구합니다.")
@@ -250,12 +257,12 @@ class QuizGame:
         }
 
         try:
-            with self.state_file.open("w", encoding="utf-8") as file:
-                json.dump(data, file, ensure_ascii=False, indent=4)
+            with self.state_file.open("w", encoding="utf-8") as file: #ascii - 한글 표현 불가하므로 utf-8
+                json.dump(data, file, ensure_ascii=False, indent=4) #indent : 들여쓰기 / json.dump : python -> json
         except OSError as error:
             print(f"파일 저장 중 오류가 발생했습니다: {error}")
 
     def safe_exit(self) -> None:
-        self.save_state()
+        self.save_state() #저장 후 종료 용도
         print("\n 데이터를 저장했습니다.")
         print(" 프로그램을 종료합니다.")
