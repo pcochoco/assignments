@@ -41,6 +41,7 @@ index.html into nginx container
 ```
 EXPOSE 80 
 ```
+*도커파일에서 명시하는 것은 선언의 의미이며 실제로 컨테이너 생성 시 포트 매핑을 통해 바인딩
 
 container port 80 mapped with pc port 8080 
 ```docker run -d -p 8080:80 my-nginx ```
